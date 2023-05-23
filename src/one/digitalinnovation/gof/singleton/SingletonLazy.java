@@ -1,7 +1,7 @@
 package one.digitalinnovation.gof.singleton;
 
 /**
- * Singleton "pregui�oso".
+ * Singleton "pregui�oso".
  * 
  * @author falvojr
  */
@@ -12,10 +12,15 @@ public class SingletonLazy {
 	private SingletonLazy() {
 		super();
 	}
-	
+	/*Acrescentado o synchronized para evitar a sincronização excessiva*/
 	public static SingletonLazy getInstancia() {
-		if (instancia == null) {
-			instancia = new SingletonLazy();
+		if(instancia == null) {
+			synchronized (SingletonLazy.class) {
+				if (instancia == null) {
+					instancia = new SingletonLazy();
+				}	
+
+			}
 		}
 		return instancia;
 	}
